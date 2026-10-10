@@ -29,13 +29,16 @@ const authLinks= <>
               Login
             </Link>
 
+           <Link href='/sign-up'>
             <Button
-              as={Link}
-              href="/sign-up"
+            
               className="rounded-lg bg-green-700 px-5 font-semibold text-white shadow-sm transition hover:bg-green-800"
             >
               Sign Up
-            </Button></>
+            </Button>
+           </Link>
+            
+            </>
  }
 </>
   return (
