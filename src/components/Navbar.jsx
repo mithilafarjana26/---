@@ -20,8 +20,8 @@ if(isPending){
 const authLinks= <>
  {
   session?.user?<>
-  <span>Welcome {session?.user?.name}</span>
-  <button onClick={() =>signOut()}>LogOut</button>
+  <span className="font-bold">Welcome {session?.user?.name}</span>
+  <button className="btn btn-success font-bold" onClick={() =>signOut()}>LogOut</button>
   </>:<><Link
               href="/sign-in"
               className="rounded-lg px-4 py-2 text-sm font-medium text-gray-700 transition hover:bg-gray-100 hover:text-green-700"
@@ -42,7 +42,8 @@ const authLinks= <>
  }
 </>
   return (
-    <nav className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/95 backdrop-blur-md">
+    <div>
+<nav className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/95 backdrop-blur-md">
       <div className="mx-auto max-w-[1880px] px-4 sm:px-6 lg:px-8">
         <div className="flex min-h-[76px] items-center justify-between gap-3">
           {/* Logo and Brand */}
@@ -114,6 +115,12 @@ const authLinks= <>
         )}
       </div>
     </nav>
+
+
+
+
+
+    </div>
   );
 };
 

@@ -15,12 +15,12 @@ const PriceUps = async() => {
         <div className="min-h-screen bg-[#f0f4ef] px-4 py-6 sm:px-6 lg:px-8">
 
 <div className='max-w-7xl mx-auto'>
-    <div className="mb-5">
-          <h1 className="text-xl font-bold text-slate-800 sm:text-2xl">
+    <div className="mb-5 items-center text-center">
+          <h1 className="text-xl mt-10 font-bold text-slate-800 sm:text-2xl">
            আজ দাম বেড়েছে
           </h1>
 
-          <p className="mt-1 text-sm text-slate-500">
+          <p className="mt-1 mb-12 text-sm text-slate-500">
             মোট {priceIncrease.length.toLocaleString("bn-BD")}টি পণ্য দেখানো হচ্ছে
           </p>
         </div>

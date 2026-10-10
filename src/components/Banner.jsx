@@ -8,7 +8,7 @@ const Banner = () => {
     });
 
     return (
-        <div className="mx-auto mt-6 flex w-full max-w-7xl flex-col-reverse items-center justify-between gap-6 rounded-3xl border border-gray-200 bg-white px-5 py-6 sm:flex-row sm:px-8 sm:py-8">
+        <div className="mx-auto md:mb-12 mt-6 flex w-full max-w-7xl flex-col-reverse items-center justify-between gap-6 rounded-3xl border border-gray-200 bg-white px-5 py-6 sm:flex-row sm:px-8 sm:py-8">
 
             <div className="w-full sm:w-3/5">
                 <p className="mb-3 inline-block rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-700">

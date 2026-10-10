@@ -7,7 +7,7 @@ import LowProducts from "../components/LowProducts";
 export default function Home() {
   return (
     <div>
-      <Navlinks></Navlinks>
+     
       <Banner></Banner>
       <PriceUps></PriceUps>
       <LowProducts/>

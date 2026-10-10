@@ -8,7 +8,7 @@ const Navlinks = async() => {
     // console.log(categories)
 
     return (
-        <div className='flex justify-center gap-4 w-full overflow-x-auto'>
+        <div className='flex justify-center  md:mt-5 gap-4 w-full overflow-x-auto'>
             <ul className='flex justify-start sm:justify-center gap-4 px-3 whitespace-nowrap'>
                 {
                     categories.map(ct => <li key={ct?.id} className="shrink-0">
@@ -16,8 +16,8 @@ const Navlinks = async() => {
                             href={`/category/${ct?.slug}`}
                             className="flex items-center gap-2 whitespace-nowrap text-sm text-slate-600 transition-colors hover:text-blue-600"
                         >
-                            <span className="text-xl">{ct?.icon}</span>
-                            <span className="text-xl">{ct?.nameBn}</span>
+                            <span className="text-lg sm:text-xl">{ct?.icon}</span>
+                            <span className="text-sm sm:text-xl">{ct?.nameBn}</span>
                         </Link>
                     </li>)
                 }

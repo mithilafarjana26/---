@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 const PriceIncrease = ({ price }) => {
@@ -9,6 +10,7 @@ const PriceIncrease = ({ price }) => {
   };
 // console.log(price)
   return (
+    <Link href={`/products/${price.id}`}>
     <div className="rounded-2xl border border-[#e0e8e1] bg-[#fbfcfb] p-3 transition-shadow hover:shadow-sm md:p-4">
       {/* Product information */}
       <div className="mb-3 flex items-center gap-3">
@@ -50,6 +52,7 @@ const PriceIncrease = ({ price }) => {
         </span>
       </div>
     </div>
+    </Link>
   );
 };
 
