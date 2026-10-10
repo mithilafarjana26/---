@@ -25,14 +25,8 @@ const Banner = () => {
                     এবং দামের পরিবর্তন এক জায়গায়।
                 </p>
 
-                <a
-                    href="#categories"
-                    className="mt-6 inline-block rounded-lg bg-green-700 px-5 py-3 text-sm font-semibold text-white shadow-md transition hover:bg-green-800"
-                >
-                    সব পণ্য দেখুন
-                </a>
+                <a href="#categories" className="mt-6 inline-block rounded-lg bg-green-700 px-5 py-3 text-sm font-semibold text-white shadow-md transition hover:bg-green-800"> সব পণ্য দেখুন </a>
             </div>
-
             <div className="flex w-full justify-center sm:w-2/5 sm:justify-end">
                 <Image
                      src="/bazar-hero.png"

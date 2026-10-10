@@ -5,6 +5,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@heroui/react";
 import { signOut, useSession } from "@/lib/auth-client";
+import UpdateProfileLink from "@/app/log-out/page";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -21,7 +22,7 @@ const authLinks= <>
  {
   session?.user?<>
   <span className="font-bold">Welcome {session?.user?.name}</span>
-  <button className="btn btn-success font-bold" onClick={() =>signOut()}>LogOut</button>
+ <UpdateProfileLink></UpdateProfileLink>
   </>:<><Link
               href="/sign-in"
               className="rounded-lg px-4 py-2 text-sm font-medium text-gray-700 transition hover:bg-gray-100 hover:text-green-700"

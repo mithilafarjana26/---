@@ -12,7 +12,6 @@ const PriceIncrease = ({ price }) => {
   return (
     <Link href={`/products/${price.id}`}>
     <div className="rounded-2xl border border-[#e0e8e1] bg-[#fbfcfb] p-3 transition-shadow hover:shadow-sm md:p-4">
-      {/* Product information */}
       <div className="mb-3 flex items-center gap-3">
         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#f0f4ef] text-2xl">
           {price.image || price.categoryIcon || "🛒"}
@@ -29,7 +28,7 @@ const PriceIncrease = ({ price }) => {
         </div>
       </div>
 
-      {/* Today's price */}
+    
       <div className="flex items-end justify-between gap-2">
         <div>
           <p className="mb-1 text-xs text-gray-500">
@@ -40,8 +39,6 @@ const PriceIncrease = ({ price }) => {
             ৳{Number(price.today).toLocaleString("bn-BD")} টাকা
           </p>
         </div>
-
-        {/* Red price increase indicator */}
         <span className="inline-flex items-center gap-1 whitespace-nowrap rounded-full bg-[#f2f5f1] px-2 py-1 text-[11px] font-semibold text-red-600">
           <span>▲</span>
           {Math.abs(Number(price.change?.pct || 0)).toLocaleString(

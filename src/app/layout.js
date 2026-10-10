@@ -4,7 +4,8 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Navlinks from "../components/Navlinks";
 import HeadLine from "../components/HeadLine";
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -28,12 +29,20 @@ export default function RootLayout({ children }) {
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <Navbar/>
-        <Navlinks></Navlinks>
-         <HeadLine></HeadLine>
-        {children}
-        <Footer/>
-        </body>
+  <Navbar />
+  <Navlinks />
+  <HeadLine />
+
+  {children}
+
+  <Footer />
+
+  <ToastContainer
+    position="top-right"
+    autoClose={2500}
+    theme="light"
+  />
+</body>
     </html>
   );
 }

@@ -4,6 +4,7 @@
 import { signIn, signUp } from "@/lib/auth-client";
 import Link from "next/link";
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 import {
   Button,
   Description,
@@ -13,57 +14,68 @@ import {
   Label,
   TextField,
 } from "@heroui/react";
+import { toast } from "react-toastify";
 
 const SignUpPage = () => {
+ const router = useRouter();
+
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-  const onSubmit = async (e) => {
-    e.preventDefault();
+const onSubmit = async (e) => {
+  e.preventDefault();
 
-    setLoading(true);
-    setErrorMessage("");
+  setLoading(true);
+  setErrorMessage("");
 
-    const formData = new FormData(e.currentTarget);
-    const data = Object.fromEntries(formData.entries());
+  const formData = new FormData(e.currentTarget);
+  const data = Object.fromEntries(formData.entries());
 
-    try {
-      const { data: resData, error } = await signUp.email({
-        name: data.name,
-        email: data.email,
-        password: data.password,
-        callbackURL: "/sign-in",
-      });
+  try {
+    const { data: resData, error } = await signUp.email({
+      name: data.name,
+      email: data.email,
+      password: data.password,
+    });
 
-      if (error) {
-        setErrorMessage(
-          error.message || "অ্যাকাউন্ট তৈরি করা যায়নি"
-        );
-        return;
-      }
-
-      console.log(resData);
-    } catch (error) {
-      setErrorMessage(
-        "কিছু একটা সমস্যা হয়েছে। আবার চেষ্টা করুন।"
+    if (error) {
+      toast.error(
+        error.message || "এই ইমেইল দিয়ে আগে থেকেই অ্যাকাউন্ট আছে!"
       );
-      console.error(error);
-    } finally {
-      setLoading(false);
+      return;
     }
-  };
 
-  const handleGoogleBtn = async () => {
-    try {
-      await signIn.social({
-        provider: "google",
-        callbackURL: "/",
-      });
-    } catch (error) {
-      setErrorMessage("Google দিয়ে সাইন আপ করা যায়নি।");
-      console.error(error);
-    }
-  };
+    toast.success("অ্যাকাউন্ট সফলভাবে তৈরি হয়েছে!");
+    router.push("/sign-in");
+  } catch (error) {
+    toast.error(
+      error.message || "অ্যাকাউন্ট তৈরি করা যায়নি। আবার চেষ্টা করুন।"
+    );
+    console.error(error);
+  } finally {
+    setLoading(false);
+  }
+};
+
+
+
+
+
+
+const handleGoogleBtn = async () => {
+  try {
+    await signIn.social({
+      provider: "google",
+      callbackURL: "/",
+    });
+  } catch (error) {
+    const message = "Google দিয়ে সাইন আপ করা যায়নি।";
+    setErrorMessage(message);
+    toast.error(message);
+    console.error(error);
+  }
+};
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#f0f5f1] px-4 py-8 sm:py-12">
