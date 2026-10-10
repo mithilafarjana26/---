@@ -4,6 +4,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { Button } from "@heroui/react";
+import { signOut, useSession } from "@/lib/auth-client";
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -11,7 +12,32 @@ const Navbar = () => {
   const date = new Date().toLocaleDateString("bn-BD", {
     dateStyle: "full",
   });
+const {data:session,isPending} = useSession()
+if(isPending){
+  return <span className="loading loading-ball loading-xl"></span>
 
+}
+const authLinks= <>
+ {
+  session?.user?<>
+  <span>Welcome {session?.user?.name}</span>
+  <button onClick={() =>signOut()}>LogOut</button>
+  </>:<><Link
+              href="/sign-in"
+              className="rounded-lg px-4 py-2 text-sm font-medium text-gray-700 transition hover:bg-gray-100 hover:text-green-700"
+            >
+              Login
+            </Link>
+
+            <Button
+              as={Link}
+              href="/sign-up"
+              className="rounded-lg bg-green-700 px-5 font-semibold text-white shadow-sm transition hover:bg-green-800"
+            >
+              Sign Up
+            </Button></>
+ }
+</>
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-gray-200 bg-white/95 backdrop-blur-md">
       <div className="mx-auto max-w-[1880px] px-4 sm:px-6 lg:px-8">
@@ -38,20 +64,7 @@ const Navbar = () => {
 
           {/* Desktop Actions */}
           <div className="hidden items-center gap-3 sm:flex">
-            <Link
-              href="/login"
-              className="rounded-lg px-4 py-2 text-sm font-medium text-gray-700 transition hover:bg-gray-100 hover:text-green-700"
-            >
-              Login
-            </Link>
-
-            <Button
-              as={Link}
-              href="/sign-up"
-              className="rounded-lg bg-green-700 px-5 font-semibold text-white shadow-sm transition hover:bg-green-800"
-            >
-              Sign Up
-            </Button>
+           {authLinks}
           </div>
 
           {/* Mobile Menu Button */}
@@ -92,22 +105,7 @@ const Navbar = () => {
         {isMenuOpen && (
           <div className="border-t border-gray-100 py-3 sm:hidden">
             <div className="flex flex-col gap-2">
-              <Link
-                href="/login"
-                onClick={() => setIsMenuOpen(false)}
-                className="rounded-lg px-4 py-3 text-sm font-medium text-gray-700 transition hover:bg-gray-50 hover:text-green-700"
-              >
-                Login
-              </Link>
-
-              <Button
-                as={Link}
-                href="/sign-up"
-                onPress={() => setIsMenuOpen(false)}
-                className="w-full rounded-lg bg-green-700 font-semibold text-white hover:bg-green-800"
-              >
-                Sign Up
-              </Button>
+             {authLinks}
             </div>
           </div>
         )}

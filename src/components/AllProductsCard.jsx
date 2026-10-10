@@ -1,4 +1,5 @@
 
+import Link from "next/link";
 import React from "react";
 
 const AllProductsCard = ({ product }) => {
@@ -17,6 +18,7 @@ const AllProductsCard = ({ product }) => {
     : "bg-slate-100 text-slate-500";
 
   return (
+    <Link href={`/products/${product.id}`}>
     <div className="flex w-full min-w-0 items-center gap-3 rounded-2xl border border-slate-200/80 bg-white/75 p-3 transition duration-200 hover:border-slate-300 hover:shadow-sm">
       {/* Product Image */}
       <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-100/90">
@@ -61,6 +63,7 @@ const AllProductsCard = ({ product }) => {
         </div>
       </div>
     </div>
+    </Link>
   );
 };
 

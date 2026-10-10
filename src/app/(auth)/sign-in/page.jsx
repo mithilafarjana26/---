@@ -37,7 +37,7 @@ const LoginPage = () => {
                  {/* Heading */}
                  <div className="text-center mb-7">
                    <h1 className="text-3xl sm:text-4xl font-bold text-red-700">
-                     সাইন আপ
+                     সাইন in
                    </h1>
        
                    <p className="text-gray-500 text-sm mt-2">
