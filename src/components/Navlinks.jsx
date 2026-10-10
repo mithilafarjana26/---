@@ -13,7 +13,7 @@ const Navlinks = async() => {
                 {
                     categories.map(ct => <li key={ct?.id} className="shrink-0">
                         <Link
-                            href={`/categories/${ct?.slug}`}
+                            href={`/category/${ct?.slug}`}
                             className="flex items-center gap-2 whitespace-nowrap text-sm text-slate-600 transition-colors hover:text-blue-600"
                         >
                             <span className="text-xl">{ct?.icon}</span>

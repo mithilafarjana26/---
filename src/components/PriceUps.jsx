@@ -10,7 +10,7 @@ const PriceUps = async() => {
 
   const products = await res.json();
   const priceIncrease = products.filter(p=>p.change.dir==="up")
-  console.log(priceIncrease)
+//   console.log(priceIncrease)
     return (
         <div className="min-h-screen bg-[#f0f4ef] px-4 py-6 sm:px-6 lg:px-8">
 

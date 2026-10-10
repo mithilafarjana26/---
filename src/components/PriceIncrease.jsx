@@ -7,7 +7,7 @@ const PriceIncrease = ({ price }) => {
     if (unit === "piece") return "প্রতি পিস";
     return `প্রতি ${unit || "একক"}`;
   };
-console.log(price)
+// console.log(price)
   return (
     <div className="rounded-2xl border border-[#e0e8e1] bg-[#fbfcfb] p-3 transition-shadow hover:shadow-sm md:p-4">
       {/* Product information */}
