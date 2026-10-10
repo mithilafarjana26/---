@@ -4,6 +4,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { signIn } from "@/lib/auth-client";
+import { toast } from "react-toastify";
 import {
   Button,
   FieldError,
@@ -17,49 +18,67 @@ const LoginPage = () => {
   const [loading, setLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-  const onSubmit = async (e) => {
-    e.preventDefault();
+ 
+const onSubmit = async (e) => {
+  e.preventDefault();
 
-    setLoading(true);
-    setErrorMessage("");
+  setLoading(true);
+  setErrorMessage("");
 
-    const formData = new FormData(e.currentTarget);
-    const data = Object.fromEntries(formData.entries());
+  const formData = new FormData(e.currentTarget);
+  const data = Object.fromEntries(formData.entries());
 
-    try {
-      const { data: resData, error } = await signIn.email({
-        email: data.email,
-        password: data.password,
-        callbackURL: "/",
-      });
+  try {
+    const { data: resData, error } = await signIn.email({
+      email: data.email,
+      password: data.password,
+      callbackURL: "/",
+    });
 
-      if (error) {
-        setErrorMessage(
-          error.message || "ইমেইল অথবা পাসওয়ার্ড সঠিক নয়"
-        );
-        return;
-      }
+    if (error) {
+      const message =
+        error.message || "ইমেইল অথবা পাসওয়ার্ড সঠিক নয়";
 
-      console.log(resData);
-    } catch (error) {
-      setErrorMessage("কিছু একটা সমস্যা হয়েছে। আবার চেষ্টা করুন।");
-      console.error(error);
-    } finally {
-      setLoading(false);
+      setErrorMessage(message);
+      toast.error(message);
+      return;
     }
-  };
 
-  const handleGoogleBtn = async () => {
-    try {
-      await signIn.social({
-        provider: "google",
-        callbackURL: "/",
-      });
-    } catch (error) {
-      setErrorMessage("Google দিয়ে লগইন করা যায়নি।");
-      console.error(error);
-    }
-  };
+    toast.success("সফলভাবে লগইন হয়েছে!");
+
+    console.log(resData);
+  } catch (error) {
+    const message = "কিছু একটা সমস্যা হয়েছে। আবার চেষ্টা করুন।";
+
+    setErrorMessage(message);
+    toast.error(message);
+    console.error(error);
+  } finally {
+    setLoading(false);
+  }
+};
+
+
+  
+const handleGoogleBtn = async () => {
+  setErrorMessage("");
+
+  try {
+    await signIn.social({
+      provider: "google",
+      callbackURL: "/",
+    });
+        toast.success("Google দিয়ে সাইন আপ সফল হয়েছে!");
+    
+  } catch (error) {
+    const message = "Google দিয়ে লগইন করা যায়নি।";
+
+    setErrorMessage(message);
+    toast.error(message);
+    console.error(error);
+  }
+};
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#f0f5f1] px-4 py-8 sm:py-12">

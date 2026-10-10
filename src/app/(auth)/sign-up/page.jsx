@@ -54,12 +54,15 @@ const onSubmit = async (e) => {
 };
 
 
+
 const handleGoogleBtn = async () => {
   try {
     await signIn.social({
       provider: "google",
       callbackURL: "/",
     });
+
+    toast.success("Google দিয়ে সাইন আপ সফল হয়েছে!");
   } catch (error) {
     const message = "Google দিয়ে সাইন আপ করা যায়নি।";
     setErrorMessage(message);
@@ -67,6 +70,7 @@ const handleGoogleBtn = async () => {
     console.error(error);
   }
 };
+
 
 
   return (
