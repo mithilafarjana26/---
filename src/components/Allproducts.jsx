@@ -3,14 +3,14 @@ import React from "react";
 import AllProductsCard from "./AllProductsCard";
 
 const Allproducts = async () => {
-  const res = await fetch("https://api.api-store.workers.dev/api/bazardor/products");
+  const res = await fetch("https://openapi.programming-hero.com/api/bazardor/products");
 
   if (!res.ok) {
     throw new Error("পণ্যের তথ্য লোড করা যায়নি");
   }
 
   const products = await res.json();
-  console.log(products)
+  // console.log(products)
 
   return (
     <section className="min-h-screen bg-[#f0f4ef] px-4 py-6 sm:px-6 lg:px-8">

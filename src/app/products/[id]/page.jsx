@@ -4,8 +4,8 @@ import { notFound } from "next/navigation";
 
 const ProductsDetails = async ({ params }) => {
   const { id } = await params;
-
-  const res = await fetch(`https://api.abcz.workers.dev/api/bazardor/products/${id}`);
+// https://openapi.programming-hero.com/api/bazardor/products/1
+  const res = await fetch(`https://openapi.programming-hero.com/api/bazardor/products/${id}`);
   if (!res.ok) {
     if (res.status === 404) notFound();
     throw new Error("পণ্যের তথ্য লোড করা যায়নি");

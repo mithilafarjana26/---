@@ -1,7 +1,7 @@
 import LowPriceCard from "./LowPriceCard";
 
 const LowProducts = async() => {
-    const res = await fetch("https://api.api-store.workers.dev/api/bazardor/products");
+    const res = await fetch("https://openapi.programming-hero.com/api/bazardor/products");
 
   if (!res.ok) {
     throw new Error("পণ্যের তথ্য লোড করা যায়নি");
@@ -9,7 +9,9 @@ const LowProducts = async() => {
 
   const products = await res.json();
   const priceDecrease = products.filter(p=>p.change.dir==="down")
-  console.log(priceDecrease)
+  const copyPriceList = [...priceDecrease]
+  const priceSort = copyPriceList.sort((a,b)=>Number(a.change.pct) - Number(b.change.pct))
+  // console.log(priceDecrease)
     return (
          <div className="min-h-screen bg-[#f0f4ef] px-4 py-6 sm:px-6 lg:px-8">
 
@@ -26,7 +28,7 @@ const LowProducts = async() => {
 
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
                 {
-                    priceDecrease.map(price=><LowPriceCard key={price.id} price={price}></LowPriceCard>)
+                    priceSort.slice(0,6).map(price=><LowPriceCard key={price.id} price={price}></LowPriceCard>)
                 }
             </div>
 </div>

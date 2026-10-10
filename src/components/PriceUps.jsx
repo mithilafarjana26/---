@@ -2,7 +2,7 @@ import React from 'react';
 import PriceIncrease from './PriceIncrease';
 
 const PriceUps = async() => {
-     const res = await fetch("https://api.api-store.workers.dev/api/bazardor/products");
+     const res = await fetch("https://openapi.programming-hero.com/api/bazardor/products");
 
   if (!res.ok) {
     throw new Error("পণ্যের তথ্য লোড করা যায়নি");
@@ -10,7 +10,10 @@ const PriceUps = async() => {
 
   const products = await res.json();
   const priceIncrease = products.filter(p=>p.change.dir==="up")
+  const copyPriceList = [...priceIncrease]
+  const priceSort = copyPriceList.sort((a,b)=>Number(a.change.pct) - Number(b.change.pct))
 //   console.log(priceIncrease)
+console.log(priceSort)
     return (
         <div className="min-h-screen bg-[#f0f4ef] px-4 py-6 sm:px-6 lg:px-8">
 
@@ -27,7 +30,7 @@ const PriceUps = async() => {
 
             <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
                 {
-                    priceIncrease.map(price=><PriceIncrease price={price} key={price.id}></PriceIncrease>)
+                    priceSort.slice(0,6).map(price=><PriceIncrease price={price} key={price.id}></PriceIncrease>)
                 }
             </div>
 </div>

@@ -5,8 +5,7 @@ import React from "react";
 const AllProductsCard = ({ product }) => {
   const price = Number(product?.today ?? 0);
   const direction = product?.change?.dir;
-  const percentage = Number(product?.change?.pct ?? 0);
-
+const percentage = Math.abs(Number(product?.change?.pct ?? 0));
   const isDown = direction === "down";
   const isUp = direction === "up";
   const isSame = !isDown && !isUp;
