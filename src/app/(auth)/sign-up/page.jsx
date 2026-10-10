@@ -31,7 +31,7 @@ const onSubmit = async (e) => {
   const formData = new FormData(e.currentTarget);
   const data = Object.fromEntries(formData.entries());
 
-  try {
+  
     const { data: resData, error } = await signUp.email({
       name: data.name,
       email: data.email,
@@ -42,24 +42,16 @@ const onSubmit = async (e) => {
       toast.error(
         error.message || "এই ইমেইল দিয়ে আগে থেকেই অ্যাকাউন্ট আছে!"
       );
+      setLoading(false)
       return;
     }
 
     toast.success("অ্যাকাউন্ট সফলভাবে তৈরি হয়েছে!");
     router.push("/sign-in");
-  } catch (error) {
-    toast.error(
-      error.message || "অ্যাকাউন্ট তৈরি করা যায়নি। আবার চেষ্টা করুন।"
-    );
-    console.error(error);
-  } finally {
-    setLoading(false);
-  }
+   
+   
+  
 };
-
-
-
-
 
 
 const handleGoogleBtn = async () => {
