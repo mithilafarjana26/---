@@ -1,6 +1,7 @@
 
 import Link from 'next/link';
 import React from 'react';
+import UpdatePrivateProfile from './UpdatePrivateProfile';
 
 const Navlinks = async() => {
     const res = await fetch('https://openapi.programming-hero.com/api/bazardor/categories')
@@ -21,6 +22,7 @@ const Navlinks = async() => {
                         </Link>
                     </li>)
                 }
+                <UpdatePrivateProfile></UpdatePrivateProfile>
             </ul>
         </div>
     );
