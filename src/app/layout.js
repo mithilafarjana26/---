@@ -1,20 +1,21 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { Noto_Serif_Bengali } from "next/font/google";
+
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Navlinks from "../components/Navlinks";
 import HeadLine from "../components/HeadLine";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+const geistSans = Noto_Serif_Bengali({
+  subsets: ["latin","bengali"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+// const geistMono = Geist_Mono({
+//   variable: "--font-geist-mono",
+//   subsets: ["latin"],
+// });
 
 export const metadata = {
   title: "বাজার দর",
@@ -26,14 +27,16 @@ export default function RootLayout({ children }) {
     <html
       lang="en"
       data-theme ="light"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className={`${geistSans.className}  h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
   <Navbar />
   <Navlinks />
   <HeadLine />
 
-  {children}
+   <main className="flex-1 w-full">
+          {children}
+        </main>
 
   <Footer />
 

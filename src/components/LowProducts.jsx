@@ -13,9 +13,9 @@ const LowProducts = async() => {
   const priceSort = copyPriceList.sort((a,b)=>Number(a.change.pct) - Number(b.change.pct))
   // console.log(priceDecrease)
     return (
-         <div className="min-h-screen bg-[#f0f4ef] px-4 py-6 sm:px-6 lg:px-8">
+         <div className=" bg-[#f0f4ef] px-4 py-6 sm:px-6 lg:px-8">
 
-<div className='max-w-7xl mx-auto'>
+<div className='max-w-7xl mx-auto mt-6 mb-6'>
     <div className="mb-5">
           <h1 className="text-xl font-bold text-slate-800 sm:text-2xl">
            আজ দাম কমেছে
